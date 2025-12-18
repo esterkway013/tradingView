@@ -155,7 +155,7 @@ onUnmounted(() => {
 <template>
   <div>
     <h2 style="color: #e5e7eb">
-      Stock Market <br/>(K-Line + Price + Volume)
+     Kway Stock Market  <br/>(K-Line + Price + Volume)
     </h2>
     <div ref="chartContainer" />
   </div>
