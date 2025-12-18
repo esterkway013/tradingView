@@ -64,10 +64,15 @@ function generateCandle() {
 // ----------------------------
 // lifecycle
 // ----------------------------
-onMounted(() => {
+onMounted(async () => {
+  await new Promise((r) => setTimeout(r, 100));
+
   if (!chartContainer.value) return;
+
+  const w = window.innerWidth;
+
   const chart = createChart(chartContainer.value, {
-    width: window.innerWidth-50,
+    width: w ? w - 50 : 300,
     height: 400,
     layout: {
       background: { color: "#0f172a" },
@@ -82,7 +87,6 @@ onMounted(() => {
       secondsVisible: true,
     },
   });
-
   // K 線
   candleSeries = chart.addCandlestickSeries({
     upColor: "#22c55e",
@@ -151,7 +155,7 @@ onUnmounted(() => {
 <template>
   <div>
     <h2 style="color: #e5e7eb">
-      Fake Stock Market <br/>(K-Line + Price + Volume)
+      Stock Market <br/>(K-Line + Price + Volume)
     </h2>
     <div ref="chartContainer" />
   </div>

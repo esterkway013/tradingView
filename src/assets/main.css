@@ -3,10 +3,9 @@ body{
   background-color: #0f172a;
 }
 #app {
-  max-width: 1280px;
   margin: 0 auto;
-  padding: 1rem;
   font-weight: normal;
+  padding: 10px;
 }
 
 a,
@@ -23,15 +22,4 @@ a,
   }
 }
 
-@media (min-width: 1024px) {
-  body {
-    display: flex;
-    place-items: center;
-  }
 
-  #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
-  }
-}
