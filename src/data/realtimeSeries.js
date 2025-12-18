@@ -55,7 +55,7 @@ export function createRealtimeSeries({
     timer = null;
   }
 
-  
+
   function getData() {
     console.log(data, 'data in realtimeSeries');
     return data;

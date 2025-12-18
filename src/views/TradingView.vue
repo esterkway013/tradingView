@@ -1,10 +1,10 @@
 <script lang="ts" setup>
 import {
-    CandlestickData,
-    createChart,
-    HistogramData,
-    ISeriesApi,
-    LineData,
+  CandlestickData,
+  createChart,
+  HistogramData,
+  ISeriesApi,
+  LineData,
 } from "lightweight-charts";
 import { onMounted, onUnmounted, ref } from "vue";
 
@@ -23,12 +23,12 @@ let candleSeries: ISeriesApi<"Candlestick">;
 let priceLineSeries: ISeriesApi<"Line">;
 let volumeSeries: ISeriesApi<"Histogram">;
 let timer: number | null = null;
-
+let handleResize: () => void;
 // ----------------------------
 // 狀態
 // ----------------------------
 let lastClose = START_PRICE;
-let currentTime = Math.floor(Date.now() / 1000);
+let currentTime = Math.floor(Date.now() / 100);
 
 // ----------------------------
 // 假資料產生器
@@ -66,10 +66,8 @@ function generateCandle() {
 // ----------------------------
 onMounted(() => {
   if (!chartContainer.value) return;
-
-  // 建立主圖表
   const chart = createChart(chartContainer.value, {
-    width: 800,
+    width: window.innerWidth-50,
     height: 400,
     layout: {
       background: { color: "#0f172a" },
@@ -136,17 +134,24 @@ onMounted(() => {
     priceLineSeries.update(priceLine);
     volumeSeries.update(vol);
   }, INTERVAL);
+
+  // 監聽視窗大小變化
+  handleResize = () => {
+    chart.resize(window.innerWidth - 50, 400);
+  };
+  window.addEventListener('resize', handleResize);
 });
 
 onUnmounted(() => {
   if (timer) clearInterval(timer);
+  window.removeEventListener('resize', handleResize);
 });
 </script>
 
 <template>
   <div>
     <h2 style="color: #e5e7eb">
-      Fake Stock Market (1s K-Line + Price + Volume)
+      Fake Stock Market <br/>(K-Line + Price + Volume)
     </h2>
     <div ref="chartContainer" />
   </div>

@@ -2,14 +2,14 @@
 </script>
 
 <template>
-  <div class="bg-[#162134] w-full h-full min-h-screen text-white bg">
+  <div class=" bg">
 <router-view />
   </div>
 
 </template>
 <style scoped>
 .bg{
-  background-color: #162134;
+  background-color: #0f172a;
 }
 </style>
 
