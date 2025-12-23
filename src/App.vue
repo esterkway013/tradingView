@@ -115,7 +115,7 @@ onMounted(async () => {
     },
   });
 
-  const TOTAL_CANDLES = 50000; // 初始化資料量
+  const TOTAL_CANDLES = 50; // 初始化資料量
   const candles: CandlestickData[] = [];
   const priceLineData: LineData[] = [];
   const volumes: HistogramData[] = [];
